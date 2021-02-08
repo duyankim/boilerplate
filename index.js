@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const port = 3001;
 const bodyParser = require("body-parser");
+
+const config = require("./config/key");
+
 const { User } = require("./models/User");
 
 //application/x-www-form-ulencoded 이렇게 생긴 데이터를 분석해서 가져올 수 있게 해준다
@@ -12,15 +15,12 @@ app.use(bodyParser.json());
 
 const mongoose = require("mongoose");
 mongoose
-  .connect(
-    "mongodb+srv://dbUser:dbUser@boilerplate.hnrfd.mongodb.net/<dbname>?retryWrites=true&w=majority",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
-    }
-  )
+  .connect(config.mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
   .then(() => console.log("MongoDB connnected..."))
   .catch((err) => console.log(err));
 

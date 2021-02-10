@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
+import { withRouter } from "react-router-dom";
 
 const LandingPage = (props) => {
   useEffect(() => {
@@ -19,4 +20,4 @@ const LandingPage = (props) => {
   return <button onClick={onClickHandler}>로그아웃</button>;
 };
 
-export default LandingPage;
+export default withRouter(LandingPage);
